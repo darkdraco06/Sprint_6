@@ -2,7 +2,7 @@ from pages.order_page import OrderPage
 import pytest
 import allure
 
-class TestOrderScooter(OrderPage):
+class TestOrderScooter:
 
     @pytest.mark.parametrize(
         'name,last_name,address,phone_number,date,commit',
@@ -17,5 +17,6 @@ class TestOrderScooter(OrderPage):
                         'Проверяем что заказ создался получив текст "Заказ создан" из элемента модального окна об успешном заказе')
     def test_order_scooter_up_button_all_data_positive_result(self, browser, name, last_name, address, phone_number,
                                                               date, commit):
-        status_order = self.create_order(browser, name, last_name, address, phone_number, date, commit)
-        assert self.VERIFICATION_STAUS_ORDER in status_order
+        order_page = OrderPage()
+        status_order = order_page.create_order(browser, name, last_name, address, phone_number, date, commit)
+        assert order_page.VERIFICATION_STAUS_ORDER in status_order

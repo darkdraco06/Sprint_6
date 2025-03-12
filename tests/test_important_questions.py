@@ -3,7 +3,7 @@ import pytest
 import allure
 
 
-class TestImportantQuestions(StartPage):
+class TestImportantQuestions:
 
     @pytest.mark.parametrize(
         'questions,answer,verification_text',
@@ -21,4 +21,5 @@ class TestImportantQuestions(StartPage):
     @allure.title('Проверка соответствия текста ответа на вопросы на стартовой странице')
     @allure.description('На странице ищем элемент "Вопрос", получаем текст овтета и сравниваем его с текстом ответа для проверки')
     def test_verification_text_answer_eight_questions_positive_result(self, browser, questions, answer, verification_text):
-        assert verification_text == self.get_text_element_answer(browser, questions, answer)
+        star_page = StartPage()
+        assert verification_text == star_page.get_text_element_answer(browser, questions, answer)
